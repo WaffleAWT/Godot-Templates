@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvk7wuskbvra3"]
+
+[ext_resource type="PackedScene" uid="uid://cqqeeyrxncr28" path="res://Models/stylized_tree/scene.gltf" id="1_hb21g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gmdh4"]
+diffuse_mode = 3
+albedo_color = Color(0.4, 0.243137, 0.0666667, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dhdc7"]
+diffuse_mode = 3
+albedo_color = Color(0.4, 0.243137, 0.0666667, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gpncc"]
+diffuse_mode = 3
+albedo_color = Color(0.4, 0.243137, 0.0666667, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_05ola"]
+height = 0.333596
+radius = 0.0294098
+
+[node name="scene" instance=ExtResource("1_hb21g")]
+
+[node name="oak 01001_trunk_Mat001_0" parent="Sketchfab_model/e4a9b945b60a47099b7ed8ca539f430afbx/RootNode/oak 01001" index="0"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gmdh4")
+
+[node name="oak 01001_trunk_Mat001_02" parent="Sketchfab_model/e4a9b945b60a47099b7ed8ca539f430afbx/RootNode/oak 01001" index="1"]
+surface_material_override/0 = SubResource("StandardMaterial3D_dhdc7")
+
+[node name="oak 01001_trunk_Mat001_03" parent="Sketchfab_model/e4a9b945b60a47099b7ed8ca539f430afbx/RootNode/oak 01001" index="2"]
+surface_material_override/0 = SubResource("StandardMaterial3D_gpncc")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." index="1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.166817, 0)
+shape = SubResource("CylinderShape3D_05ola")

@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://ctjl0lcnaaqc"]
+
+[ext_resource type="Shader" uid="uid://bcr4jjauc01j1" path="res://Shaders/StylizedTrail.tres" id="1_yd6tm"]
+[ext_resource type="Texture2D" uid="uid://cgc4hcokiywp5" path="res://Textures/Particles/StylizedTrail.png" id="2_p3qk3"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fjh84"]
+fractal_octaves = 3
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_cxppc"]
+seamless = true
+noise = SubResource("FastNoiseLite_fjh84")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_yd6tm")
+shader_parameter/DissolveSpeed = Vector2(-0.5, 0)
+shader_parameter/MainTexSpeed = Vector2(-0.1, 0)
+shader_parameter/NoiseTexture = SubResource("NoiseTexture2D_cxppc")
+shader_parameter/Texture = ExtResource("2_p3qk3")

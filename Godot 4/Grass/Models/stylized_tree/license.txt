@@ -1,0 +1,11 @@
+Model Information:
+* title:	Stylized Tree
+* source:	https://sketchfab.com/3d-models/stylized-tree-6d1aeea748f147789004bc03e1930d32
+* author:	yonimantz (https://sketchfab.com/yonimantz09)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Stylized Tree" (https://sketchfab.com/3d-models/stylized-tree-6d1aeea748f147789004bc03e1930d32) by yonimantz (https://sketchfab.com/yonimantz09) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

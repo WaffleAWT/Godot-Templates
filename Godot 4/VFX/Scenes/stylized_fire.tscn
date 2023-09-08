@@ -1,0 +1,197 @@
+[gd_scene load_steps=27 format=3 uid="uid://dtgjdcmaup6gw"]
+
+[ext_resource type="Shader" path="res://Shaders/StylizedFire.gdshader" id="1_o2uhk"]
+[ext_resource type="Texture2D" uid="uid://dor1qn6whfd1r" path="res://Textures/Noise/Fire Noise.png" id="2_rrgep"]
+[ext_resource type="Texture2D" uid="uid://cxy8fqo36kaql" path="res://Textures/Particles/Fire Mask.png" id="3_fr61e"]
+[ext_resource type="Texture2D" uid="uid://w0f7r0vufu4j" path="res://Textures/Prototype/Dark/texture_01.png" id="4_6v17x"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c0d03"]
+render_priority = 0
+shader = ExtResource("1_o2uhk")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+shader_parameter/noise_texture = ExtResource("2_rrgep")
+shader_parameter/texture_mask = ExtResource("3_fr61e")
+
+[sub_resource type="Gradient" id="Gradient_oaamq"]
+colors = PackedColorArray(1, 0.883333, 0, 1, 1, 0, 0.45098, 0.152941)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vlwp6"]
+gradient = SubResource("Gradient_oaamq")
+width = 128
+
+[sub_resource type="Curve" id="Curve_k2pp6"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.535714, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_37q4c"]
+width = 128
+curve = SubResource("Curve_k2pp6")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_swn4q"]
+lifetime_randomness = 0.81
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_min = 0.1
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_37q4c")
+color_ramp = SubResource("GradientTexture1D_vlwp6")
+
+[sub_resource type="QuadMesh" id="QuadMesh_cdvcp"]
+resource_local_to_scene = true
+size = Vector2(0.5, 0.5)
+
+[sub_resource type="Gradient" id="Gradient_um0iq"]
+colors = PackedColorArray(0, 0.983334, 1, 1, 0.228372, 0.170887, 0.594105, 0.152941)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1be0q"]
+gradient = SubResource("Gradient_um0iq")
+width = 128
+
+[sub_resource type="Curve" id="Curve_x26vn"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.535714, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_qqivn"]
+width = 128
+curve = SubResource("Curve_x26vn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_806es"]
+lifetime_randomness = 0.81
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_min = 0.1
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_qqivn")
+color_ramp = SubResource("GradientTexture1D_1be0q")
+
+[sub_resource type="Gradient" id="Gradient_fdxwe"]
+colors = PackedColorArray(0.216667, 1, 0, 1, 0.0751492, 0.32932, 0, 0.152941)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gockj"]
+gradient = SubResource("Gradient_fdxwe")
+width = 128
+
+[sub_resource type="Curve" id="Curve_ox8tk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.535714, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_tue2a"]
+width = 128
+curve = SubResource("Curve_ox8tk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i3vut"]
+lifetime_randomness = 0.81
+direction = Vector3(0, 1, 0)
+spread = 0.0
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_min = 0.1
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_tue2a")
+color_ramp = SubResource("GradientTexture1D_gockj")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d60fh"]
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vd3tw"]
+albedo_texture = ExtResource("4_6v17x")
+uv1_triplanar = true
+
+[sub_resource type="PhysicalSkyMaterial" id="PhysicalSkyMaterial_h8xxv"]
+
+[sub_resource type="Sky" id="Sky_xi34v"]
+sky_material = SubResource("PhysicalSkyMaterial_h8xxv")
+radiance_size = 1
+
+[sub_resource type="Environment" id="Environment_qa64j"]
+background_mode = 2
+sky = SubResource("Sky_xi34v")
+ambient_light_color = Color(1, 1, 1, 1)
+tonemap_mode = 3
+tonemap_white = 2.0
+ssr_enabled = true
+ssao_enabled = true
+glow_enabled = true
+glow_levels/2 = 1.0
+glow_levels/4 = 1.0
+glow_normalized = true
+glow_strength = 0.78
+glow_blend_mode = 0
+glow_hdr_luminance_cap = 1.0
+adjustment_enabled = true
+adjustment_contrast = 1.1
+adjustment_saturation = 1.1
+
+[node name="StylizedFire" type="Node3D"]
+
+[node name="StylizedFireNormal" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_c0d03")
+cast_shadow = 0
+amount = 500
+randomness = 0.74
+fixed_fps = 0
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_swn4q")
+draw_pass_1 = SubResource("QuadMesh_cdvcp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="StylizedFireNormal"]
+light_color = Color(1, 0.901961, 0.560784, 1)
+light_energy = 2.0
+light_bake_mode = 1
+
+[node name="StylizedFireBlue" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+material_override = SubResource("ShaderMaterial_c0d03")
+cast_shadow = 0
+amount = 500
+randomness = 0.74
+fixed_fps = 0
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_806es")
+draw_pass_1 = SubResource("QuadMesh_cdvcp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="StylizedFireBlue"]
+light_color = Color(0.560784, 0.752941, 1, 1)
+light_energy = 2.0
+light_bake_mode = 1
+
+[node name="StylizedFireGreen" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+material_override = SubResource("ShaderMaterial_c0d03")
+cast_shadow = 0
+amount = 500
+randomness = 0.74
+fixed_fps = 0
+draw_order = 1
+process_material = SubResource("ParticleProcessMaterial_i3vut")
+draw_pass_1 = SubResource("QuadMesh_cdvcp")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="StylizedFireGreen"]
+light_color = Color(0.522167, 1, 0.39, 1)
+light_energy = 2.0
+light_bake_mode = 1
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.187128, 0)
+mesh = SubResource("PlaneMesh_d60fh")
+skeleton = NodePath("../StylizedFireNormal")
+surface_material_override/0 = SubResource("StandardMaterial3D_vd3tw")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_qa64j")

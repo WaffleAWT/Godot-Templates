@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmv6fbjhdrh8o"]
+
+[ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="1_5lol1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jxe71"]
+bg_color = Color(0.160784, 0.588235, 0.721569, 0.392157)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0, 0.827451, 0.972549, 1)
+border_blend = true
+
+[node name="SelectorBox" type="CanvasLayer"]
+
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("panel")]
+offset = Vector2(320, 180)
+script = ExtResource("1_5lol1")
+panel = NodePath("../Panel")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jxe71")

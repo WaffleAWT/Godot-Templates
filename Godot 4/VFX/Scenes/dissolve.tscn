@@ -1,0 +1,112 @@
+[gd_scene load_steps=13 format=3 uid="uid://jcdmd0yh8amq"]
+
+[ext_resource type="Texture2D" uid="uid://w0f7r0vufu4j" path="res://Textures/Prototype/Dark/texture_01.png" id="1_hwjvp"]
+[ext_resource type="Environment" uid="uid://bmg5i8bv0d53g" path="res://Environments/Night.tres" id="2_80abq"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_buifk"]
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hrpvk"]
+albedo_texture = ExtResource("1_hwjvp")
+uv1_triplanar = true
+
+[sub_resource type="Shader" id="Shader_tg0nf"]
+code = "shader_type spatial;
+render_mode depth_draw_always, cull_disabled;
+
+uniform vec4 albedo : source_color;
+uniform sampler2D texture_albedo : hint_screen_texture;
+
+uniform vec4 emission_color : source_color = vec4(1);
+uniform float emission_amount;
+
+uniform sampler2D dissolve_texture;
+uniform float burn_size : hint_range(0, 2);
+uniform float dissolve_amount : hint_range(0, 1);
+
+void fragment() {
+	vec4 albedo_tex = texture(texture_albedo, UV);
+	ALBEDO = albedo.rgb * albedo_tex.rgb;
+	
+	float sample = texture(dissolve_texture, UV).r;
+	float emission_value = 1.0 - smoothstep(dissolve_amount, dissolve_amount + burn_size, sample);
+	EMISSION = vec3(emission_value * emission_amount * emission_color.rgb);
+	ALPHA = smoothstep(dissolve_amount - burn_size, dissolve_amount, sample);
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5alal"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hejwm"]
+seamless = true
+noise = SubResource("FastNoiseLite_5alal")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1xn74"]
+render_priority = 0
+shader = SubResource("Shader_tg0nf")
+shader_parameter/albedo = null
+shader_parameter/emission_color = Color(1, 0.572549, 0, 1)
+shader_parameter/emission_amount = 8.0
+shader_parameter/burn_size = 0.025
+shader_parameter/dissolve_amount = 0.0
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_hejwm")
+
+[sub_resource type="SphereMesh" id="SphereMesh_vdkwg"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="Animation" id="Animation_ljaqd"]
+resource_name = "Effect"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ball:material_override:shader_parameter/dissolve_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [0.0, 1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_hd3tp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Ball:material_override:shader_parameter/dissolve_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vtbv6"]
+_data = {
+"Effect": SubResource("Animation_ljaqd"),
+"RESET": SubResource("Animation_hd3tp")
+}
+
+[node name="Dissolve" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_buifk")
+surface_material_override/0 = SubResource("StandardMaterial3D_hrpvk")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_80abq")
+
+[node name="Ball" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+material_override = SubResource("ShaderMaterial_1xn74")
+mesh = SubResource("SphereMesh_vdkwg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vtbv6")
+}

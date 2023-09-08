@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://csoeg7i0ptk5u"]
+
+[ext_resource type="Script" path="res://Crafting System.gd" id="1_kyedp"]
+
+[node name="Crafting System" type="Node"]
+script = ExtResource("1_kyedp")

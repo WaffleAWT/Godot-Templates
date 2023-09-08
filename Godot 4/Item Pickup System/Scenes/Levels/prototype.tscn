@@ -1,0 +1,282 @@
+[gd_scene load_steps=36 format=3 uid="uid://bj1ljtkpfa2vu"]
+
+[ext_resource type="Texture2D" uid="uid://dbbl1veayn7sl" path="res://Textures/Prototype/Dark.png" id="1_fmmmc"]
+[ext_resource type="PackedScene" uid="uid://d2ea3ys8jertj" path="res://Scenes/Characters/player.tscn" id="2_2x57s"]
+[ext_resource type="Texture2D" uid="uid://bwclkayk1imdn" path="res://Textures/Prototype/Green.png" id="3_1p5ux"]
+[ext_resource type="Texture2D" uid="uid://do68txgsn4jov" path="res://Textures/Prototype/Orange.png" id="4_gjjup"]
+[ext_resource type="Script" path="res://Scripts/Box.gd" id="4_ns88t"]
+[ext_resource type="Shader" path="res://prototype.gdshader" id="6_jp3n5"]
+[ext_resource type="Texture2D" uid="uid://k62jacgi7273" path="res://Textures/Prototype/Purple.png" id="6_p61yl"]
+[ext_resource type="Script" path="res://Scripts/Ball.gd" id="7_cp4d6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3lh5q"]
+
+[sub_resource type="Sky" id="Sky_oecpf"]
+sky_material = SubResource("ProceduralSkyMaterial_3lh5q")
+
+[sub_resource type="Environment" id="Environment_l7vmw"]
+background_mode = 2
+sky = SubResource("Sky_oecpf")
+tonemap_mode = 3
+fog_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx4eq"]
+albedo_texture = ExtResource("1_fmmmc")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6ewvf"]
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ya2tb"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wr5l1"]
+albedo_texture = ExtResource("3_1p5ux")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wyeka"]
+size = Vector3(8, 4, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c7mvc"]
+data = PackedVector3Array(-4, 2, 0.5, 4, 2, 0.5, -4, -2, 0.5, 4, 2, 0.5, 4, -2, 0.5, -4, -2, 0.5, 4, 2, -0.5, -4, 2, -0.5, 4, -2, -0.5, -4, 2, -0.5, -4, -2, -0.5, 4, -2, -0.5, 4, 2, 0.5, 4, 2, -0.5, 4, -2, 0.5, 4, 2, -0.5, 4, -2, -0.5, 4, -2, 0.5, -4, 2, -0.5, -4, 2, 0.5, -4, -2, -0.5, -4, 2, 0.5, -4, -2, 0.5, -4, -2, -0.5, 4, 2, 0.5, -4, 2, 0.5, 4, 2, -0.5, -4, 2, 0.5, -4, 2, -0.5, 4, 2, -0.5, -4, -2, 0.5, 4, -2, 0.5, -4, -2, -0.5, 4, -2, 0.5, 4, -2, -0.5, -4, -2, -0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3xdtl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gxq20"]
+render_priority = 0
+shader = ExtResource("6_jp3n5")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucja7"]
+next_pass = SubResource("ShaderMaterial_gxq20")
+shading_mode = 2
+albedo_texture = ExtResource("4_gjjup")
+uv1_triplanar = true
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_odwud"]
+
+[sub_resource type="Animation" id="Animation_8lllk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:next_pass:shader_parameter/outline_width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+
+[sub_resource type="Animation" id="Animation_tj1bh"]
+resource_name = "detach"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:next_pass:shader_parameter/outline_width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_fre6a"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:next_pass:shader_parameter/outline_width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bl8oj"]
+resource_name = "outline"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:next_pass:shader_parameter/outline_width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 5.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ibvrx"]
+_data = {
+"RESET": SubResource("Animation_8lllk"),
+"detach": SubResource("Animation_tj1bh"),
+"idle": SubResource("Animation_fre6a"),
+"outline": SubResource("Animation_bl8oj")
+}
+
+[sub_resource type="SphereMesh" id="SphereMesh_um7hn"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i7n64"]
+render_priority = 0
+shader = ExtResource("6_jp3n5")
+shader_parameter/outline_color = Color(1, 1, 1, 1)
+shader_parameter/outline_width = 5.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mga7"]
+next_pass = SubResource("ShaderMaterial_i7n64")
+albedo_texture = ExtResource("6_p61yl")
+uv1_triplanar = true
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_5x8oy"]
+
+[sub_resource type="Animation" id="Animation_x8vc4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:next_pass:shader_parameter/outline_width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [5.0]
+}
+
+[sub_resource type="Animation" id="Animation_vxdx8"]
+resource_name = "detach"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:next_pass:shader_parameter/outline_width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [5.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_p23jp"]
+resource_name = "idle"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:next_pass:shader_parameter/outline_width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4g0em"]
+resource_name = "outline"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MeshInstance3D:surface_material_override/0:next_pass:shader_parameter/outline_width")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 5.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_edwqs"]
+_data = {
+"RESET": SubResource("Animation_x8vc4"),
+"detach": SubResource("Animation_vxdx8"),
+"idle": SubResource("Animation_p23jp"),
+"outline": SubResource("Animation_4g0em")
+}
+
+[node name="Prototype" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.816803, 0.576917, 0, -0.576917, 0.816803, 0, 5.07858, 7.18124)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l7vmw")
+
+[node name="Player" parent="." instance=ExtResource("2_2x57s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_lx4eq")
+mesh = SubResource("PlaneMesh_6ewvf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ya2tb")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
+material_override = SubResource("StandardMaterial3D_wr5l1")
+mesh = SubResource("BoxMesh_wyeka")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_c7mvc")
+
+[node name="Box" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2.16416)
+script = ExtResource("4_ns88t")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
+mesh = SubResource("BoxMesh_3xdtl")
+surface_material_override/0 = SubResource("StandardMaterial3D_ucja7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
+shape = SubResource("BoxShape3D_odwud")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Box"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_ibvrx")
+}
+
+[node name="Ball" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.03837, 0.5, -1.9958)
+script = ExtResource("7_cp4d6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Ball"]
+mesh = SubResource("SphereMesh_um7hn")
+surface_material_override/0 = SubResource("StandardMaterial3D_2mga7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ball"]
+shape = SubResource("SphereShape3D_5x8oy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Ball"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_edwqs")
+}

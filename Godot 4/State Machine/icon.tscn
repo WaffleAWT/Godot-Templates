@@ -1,0 +1,22 @@
+[gd_scene load_steps=6 format=3 uid="uid://c3m4q8nti3mjl"]
+
+[ext_resource type="Texture2D" uid="uid://6spbp5fbj568" path="res://icon.svg" id="1_3mo1l"]
+[ext_resource type="Script" path="res://icon.gd" id="2_relle"]
+[ext_resource type="Script" path="res://StateMachine.gd" id="2_uj47l"]
+[ext_resource type="Script" path="res://Idle.gd" id="3_jwd35"]
+[ext_resource type="Script" path="res://Move.gd" id="4_b3106"]
+
+[node name="Icon" type="Sprite2D"]
+position = Vector2(546, 307)
+texture = ExtResource("1_3mo1l")
+script = ExtResource("2_relle")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("2_uj47l")
+initial_state = NodePath("Move")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("3_jwd35")
+
+[node name="Move" type="Node" parent="StateMachine"]
+script = ExtResource("4_b3106")

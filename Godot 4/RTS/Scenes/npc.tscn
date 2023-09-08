@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmd6cfjulooaw"]
+
+[ext_resource type="Texture2D" uid="uid://drpy4fp8lfox4" path="res://Textures/NPC.png" id="1_pcmvo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wbisv"]
+atlas = ExtResource("1_pcmvo")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s1eq"]
+atlas = ExtResource("1_pcmvo")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wnhi2"]
+atlas = ExtResource("1_pcmvo")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxxg2"]
+atlas = ExtResource("1_pcmvo")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3s31"]
+atlas = ExtResource("1_pcmvo")
+region = Rect2(0, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucxu0"]
+atlas = ExtResource("1_pcmvo")
+region = Rect2(24, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tk4y"]
+atlas = ExtResource("1_pcmvo")
+region = Rect2(48, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iihfl"]
+atlas = ExtResource("1_pcmvo")
+region = Rect2(72, 24, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_65pfd"]
+atlas = ExtResource("1_pcmvo")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svw3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wbisv")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s1eq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wnhi2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxxg2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3s31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucxu0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tk4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iihfl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_65pfd")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_edqen"]
+radius = 5.0
+height = 14.0
+
+[node name="NPC" type="CharacterBody2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_svw3x")
+animation = &"Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_edqen")

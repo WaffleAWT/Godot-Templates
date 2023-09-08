@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2gpu10vqqu7"]
+
+[ext_resource type="Material" uid="uid://ctjl0lcnaaqc" path="res://Materials/stylized_trail.tres" id="1_scspy"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_jtwwl"]
+size = Vector2(2, 1)
+
+[node name="StylizedTrail" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_jtwwl")
+surface_material_override/0 = ExtResource("1_scspy")

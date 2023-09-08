@@ -1,0 +1,68 @@
+[gd_scene load_steps=13 format=3 uid="uid://5jml6ifjidyq"]
+
+[ext_resource type="Texture2D" uid="uid://dbbl1veayn7sl" path="res://Textures/Prototype/Dark.png" id="1_fmmmc"]
+[ext_resource type="PackedScene" uid="uid://dtl0368kg30cn" path="res://Scenes/Characters/player.tscn" id="2_2x57s"]
+[ext_resource type="Texture2D" uid="uid://bwclkayk1imdn" path="res://Textures/Prototype/Green.png" id="3_1p5ux"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3lh5q"]
+
+[sub_resource type="Sky" id="Sky_oecpf"]
+sky_material = SubResource("ProceduralSkyMaterial_3lh5q")
+
+[sub_resource type="Environment" id="Environment_l7vmw"]
+background_mode = 2
+sky = SubResource("Sky_oecpf")
+tonemap_mode = 3
+fog_enabled = true
+volumetric_fog_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lx4eq"]
+albedo_texture = ExtResource("1_fmmmc")
+uv1_triplanar = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_6ewvf"]
+size = Vector2(50, 50)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ya2tb"]
+data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wr5l1"]
+albedo_texture = ExtResource("3_1p5ux")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wyeka"]
+size = Vector3(8, 4, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c7mvc"]
+data = PackedVector3Array(-4, 2, 0.5, 4, 2, 0.5, -4, -2, 0.5, 4, 2, 0.5, 4, -2, 0.5, -4, -2, 0.5, 4, 2, -0.5, -4, 2, -0.5, 4, -2, -0.5, -4, 2, -0.5, -4, -2, -0.5, 4, -2, -0.5, 4, 2, 0.5, 4, 2, -0.5, 4, -2, 0.5, 4, 2, -0.5, 4, -2, -0.5, 4, -2, 0.5, -4, 2, -0.5, -4, 2, 0.5, -4, -2, -0.5, -4, 2, 0.5, -4, -2, 0.5, -4, -2, -0.5, 4, 2, 0.5, -4, 2, 0.5, 4, 2, -0.5, -4, 2, 0.5, -4, 2, -0.5, 4, 2, -0.5, -4, -2, 0.5, 4, -2, 0.5, -4, -2, -0.5, 4, -2, 0.5, 4, -2, -0.5, -4, -2, -0.5)
+
+[node name="Prototype" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.816803, 0.576917, 0, -0.576917, 0.816803, 0, 5.07858, 7.18124)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_l7vmw")
+
+[node name="Player" parent="." instance=ExtResource("2_2x57s")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_lx4eq")
+mesh = SubResource("PlaneMesh_6ewvf")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Ground"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Ground/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_ya2tb")
+
+[node name="Wall" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -6)
+material_override = SubResource("StandardMaterial3D_wr5l1")
+mesh = SubResource("BoxMesh_wyeka")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_c7mvc")

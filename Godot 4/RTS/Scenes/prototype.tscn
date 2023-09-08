@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://eiu8730goo6l"]
+
+[ext_resource type="Texture2D" uid="uid://sexvkey52cik" path="res://Textures/Grass.png" id="1_h3ubf"]
+[ext_resource type="PackedScene" uid="uid://cmd6cfjulooaw" path="res://Scenes/npc.tscn" id="2_j66yy"]
+[ext_resource type="Texture2D" uid="uid://bdu8f5r1lufd5" path="res://Textures/Building.png" id="3_6qyhe"]
+[ext_resource type="PackedScene" uid="uid://cmv6fbjhdrh8o" path="res://Scenes/selector_box.tscn" id="4_uahnn"]
+
+[node name="Prototype" type="Node2D"]
+
+[node name="SelectorBox" parent="." instance=ExtResource("4_uahnn")]
+
+[node name="GrassBackground" type="TextureRect" parent="."]
+offset_right = 640.0
+offset_bottom = 360.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_h3ubf")
+stretch_mode = 1
+
+[node name="NPC\'s" type="Node2D" parent="."]
+
+[node name="NPC" parent="NPC\'s" instance=ExtResource("2_j66yy")]
+position = Vector2(335, 150)
+
+[node name="NPC2" parent="NPC\'s" instance=ExtResource("2_j66yy")]
+position = Vector2(305, 157)
+
+[node name="NPC3" parent="NPC\'s" instance=ExtResource("2_j66yy")]
+position = Vector2(311, 133)
+
+[node name="Building" type="Sprite2D" parent="."]
+position = Vector2(254, 105)
+texture = ExtResource("3_6qyhe")

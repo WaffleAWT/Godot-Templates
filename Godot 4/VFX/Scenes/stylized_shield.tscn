@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://dldm1jxvxgp14"]
+
+[ext_resource type="Texture2D" uid="uid://w0f7r0vufu4j" path="res://Textures/Prototype/Dark/texture_01.png" id="1_ox275"]
+[ext_resource type="Shader" path="res://Shaders/StylizedShield.gdshader" id="2_d1qn1"]
+[ext_resource type="Texture2D" uid="uid://u5sxpiqkooxy" path="res://Textures/Patterns/Hexagon.png" id="3_hjtov"]
+[ext_resource type="Environment" uid="uid://bmg5i8bv0d53g" path="res://Environments/Night.tres" id="4_x3w0d"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_e4xrm"]
+size = Vector2(50, 50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7yxso"]
+albedo_texture = ExtResource("1_ox275")
+uv1_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_7kl24"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nnkt5"]
+render_priority = 0
+shader = ExtResource("2_d1qn1")
+shader_parameter/color = Color(0.407843, 0.188235, 1, 1)
+shader_parameter/fresnel_power = 8.0
+shader_parameter/edge_intensity = 2.0
+shader_parameter/fill_amount = 0.1
+shader_parameter/pulsing_strength = 0.1
+shader_parameter/pulsing_speed = 1.0
+shader_parameter/scanline_period = 0.5
+shader_parameter/scanline_width = 0.1
+shader_parameter/scanline_intensity = 0.35
+shader_parameter/pattern_scroll_speed = 0.025
+shader_parameter/pattern_uv_offset = Vector2(6, 3)
+shader_parameter/pattern_texture = ExtResource("3_hjtov")
+
+[node name="StylizedShield" type="Node3D"]
+
+[node name="Ground" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_e4xrm")
+surface_material_override/0 = SubResource("StandardMaterial3D_7yxso")
+
+[node name="Shield" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03134, 0)
+mesh = SubResource("SphereMesh_7kl24")
+surface_material_override/0 = SubResource("ShaderMaterial_nnkt5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="Shield"]
+light_color = Color(0.407843, 0.188235, 1, 1)
+light_energy = 3.0
+omni_range = 2.2
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("4_x3w0d")

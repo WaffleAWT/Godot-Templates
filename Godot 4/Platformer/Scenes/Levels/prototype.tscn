@@ -1,0 +1,47 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtd5ixjqswnvh"]
+
+[ext_resource type="PackedScene" uid="uid://dvj6806qdvug3" path="res://Scenes/Characters/player.tscn" id="1_3i3qf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73pjp"]
+size = Vector2(20, 282)
+
+[node name="Prototype" type="Node2D"]
+
+[node name="Floor" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PackedVector2Array(-2, 361, 104, 293, 587, 291, 643, 365, -14, 372)
+
+[node name="Polygon2D" type="Polygon2D" parent="Floor"]
+antialiased = true
+polygon = PackedVector2Array(-2, 361, 104, 293, 587, 291, 643, 365, -14, 372)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(327, 104)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource("RectangleShape2D_73pjp")
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall"]
+polygon = PackedVector2Array(-10, 141, 10, 141, 10, -141, -10, -141)
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2(603, 146)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+shape = SubResource("RectangleShape2D_73pjp")
+
+[node name="Polygon2D" type="Polygon2D" parent="Wall2"]
+polygon = PackedVector2Array(-10, 141, 10, 141, 10, -141, -10, -141)
+
+[node name="Player" parent="." instance=ExtResource("1_3i3qf")]
+position = Vector2(260, 276)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(260, 276)
+zoom = Vector2(2, 2)
+process_callback = 0
+position_smoothing_enabled = true

@@ -1,0 +1,16 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://dpydg8o25ew7e"]
+
+[ext_resource type="Shader" uid="uid://87pet7te1a4d" path="res://Shaders/Grass.tres" id="1_nsurk"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_l4vag"]
+fractal_type = 0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_6mhyx"]
+noise = SubResource("FastNoiseLite_l4vag")
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_nsurk")
+shader_parameter/BaseColor = Color(0.164706, 0.690196, 0.298039, 1)
+shader_parameter/GrassColor = Color(0.603922, 0.941176, 0.321569, 1)
+shader_parameter/WindNoise = SubResource("NoiseTexture2D_6mhyx")

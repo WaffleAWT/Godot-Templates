@@ -1,0 +1,37 @@
+2a60927148abd1d33b818b535e306557
+::res://::1682514434
+default_env.tres::Environment::-1::1682427510::0::1::::<><>::
+icon.png::CompressedTexture2D::4790272002214686890::1680932336::1682514435::1::::<><>::
+::res://Scenes/::1680934188
+::res://Scenes/Characters/::1680937595
+Player.tscn::PackedScene::-1::1680937595::0::1::::<><>::res://Textures/Player Final/Run.png<>res://Textures/Player Final/Jump.png<>res://Textures/Player Final/Idle.png<>res://Scripts/Characters/Player/Player.gd<>res://Textures/Player Final/Land.png<>res://Textures/Player Final/Wall Slide.png
+::res://Scenes/Levels/::1682427510
+Prototype.tscn::PackedScene::-1::1682427510::0::1::::<><>::res://Textures/Block.png<>res://Scenes/Characters/Player.tscn<>res://Scripts/Levels/Prototype.gd
+::res://Scripts/::1680936777
+::res://Scripts/Characters/::1680933291
+::res://Scripts/Characters/Player/::1680937414
+Player.gd::GDScript::-1::1680937414::0::1::::<>KinematicBody2D<>::
+::res://Scripts/Levels/::1681182291
+Prototype.gd::GDScript::-1::1681182291::0::1::::<>Node2D<>::
+::res://Textures/::1680932916
+Block.png::CompressedTexture2D::2564028863091221098::1680932883::1682514435::1::::<><>::
+::res://Textures/Player Final/::1680932743
+Crouch Idle.png::CompressedTexture2D::7522582656129107944::1680930146::1682514435::1::::<><>::
+Crouch Walk.png::CompressedTexture2D::8252760899850617151::1680930163::1682514435::1::::<><>::
+Death.png::CompressedTexture2D::4561464808731121923::1680930179::1682514435::1::::<><>::
+Double Jump.png::CompressedTexture2D::2423510118100347434::1680930199::1682514435::1::::<><>::
+Idle.png::CompressedTexture2D::1117290760171896321::1680930218::1682514435::1::::<><>::
+Jump.png::CompressedTexture2D::6023463545205082513::1680930238::1682514435::1::::<><>::
+Land.png::CompressedTexture2D::449926188967895479::1680930249::1682514435::1::::<><>::
+Pull.png::CompressedTexture2D::7281340201561976758::1680930273::1682514435::1::::<><>::
+Punch.png::CompressedTexture2D::425572717157738739::1680930290::1682514435::1::::<><>::
+Push-Pull Idle.png::CompressedTexture2D::3791225431279665370::1680930329::1682514435::1::::<><>::
+Push.png::CompressedTexture2D::2142030257692714716::1680930308::1682514435::1::::<><>::
+Roll.png::CompressedTexture2D::1161756385141358423::1680930345::1682514435::1::::<><>::
+Run.png::CompressedTexture2D::9151915328815270420::1680930362::1682514435::1::::<><>::
+Stab.png::CompressedTexture2D::4105151562275713808::1680930377::1682514435::1::::<><>::
+Sword Attack.png::CompressedTexture2D::3361710157283926690::1680930407::1682514435::1::::<><>::
+Sword Idle.png::CompressedTexture2D::8154734142755828860::1680930438::1682514435::1::::<><>::
+Sword Run.png::CompressedTexture2D::6862909735603201709::1680930457::1682514435::1::::<><>::
+Walk.png::CompressedTexture2D::8040679886760174289::1680930485::1682514435::1::::<><>::
+Wall Slide.png::CompressedTexture2D::172269584347818269::1680930514::1682514435::1::::<><>::
